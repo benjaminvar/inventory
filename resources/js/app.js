@@ -5,9 +5,15 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
+let axios = require('axios');
+let VueAxios = require('vue-axios');
+let Paginate = require('vuejs-paginate');
 
+Vue.use(VueAxios, axios)
+
+
+Vue.component('paginate', Paginate)
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
