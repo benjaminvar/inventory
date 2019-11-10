@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/categories', 'CategoryController::show');
+Route::get('/ajax/categories', 'CategoryController::index');
