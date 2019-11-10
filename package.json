@@ -27,6 +27,7 @@
     "dependencies": {
         "bootstrap-vue": "^2.0.4",
         "chart.js": "^2.9.2",
-        "jquery.easing": "^1.4.1"
+        "jquery.easing": "^1.4.1",
+        "vuejs-paginate": "^2.1.0"
     }
 }
