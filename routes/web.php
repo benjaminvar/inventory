@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 Route::get('/categories', 'CategoryController@show');
 Route::get('/ajax/categories', 'CategoryController@index');
+Route::get('/ajax/categories/{category}', 'CategoryController@get');
+Route::post('/ajax/categories/add', 'CategoryController@store');
+Route::put('/ajax/categories/{category}/update', 'CategoryController@update');
+Route::delete('/ajax/categories/{category}/delete', 'CategoryController@destroy');
