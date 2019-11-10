@@ -1,9 +1,9 @@
 @extends('layout.common')
 @section('body')
 <body id="page-top">
-    @yield('content')
-    
-
+    <div id="app">
+     @yield('content')
+    </div>
     <script src="{{ asset(mix('js/manifest.js')) }}"></script>
 
     <script src="{{ asset(mix('js/vendor.js')) }}"></script>

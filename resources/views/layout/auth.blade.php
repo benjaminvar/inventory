@@ -1,8 +1,9 @@
 @extends("layout.common")
 @section('body')
 <body class="bg-gradient-primary">
-    @yield('content')
-    
+    <div id="app">
+     @yield('content')
+    </div>
 
     <script src="{{ asset(mix('js/manifest.js')) }}"></script>
 
