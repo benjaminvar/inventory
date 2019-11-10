@@ -1,12 +1,12 @@
 <template>
   <!-- Begin Page Content -->
-  <div class="container-fluid">
+  <div class="container-fluid" @update-data="search">
     <div class="row">
       <div class="col">
         <h1 class="h3 mb-4 text-gray-800">Categories</h1>
       </div>
       <div>
-        <a class="btn btn-success" href="#" @click.prevent="showAddForm" v-b-modal.modal-1>
+        <a class="btn btn-success" href="#" @click.prevent="showAddForm">
           <i class="fas fa-plus"></i> Add category
         </a>
       </div>
@@ -20,7 +20,13 @@
           <div class="card-body">
             <form class="mb-3">
               <div class="input-group">
-                <input class="form-control" type="text" placeholder="Staer typing to searhc" v-model="keyword" @input="search"/>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Staer typing to searhc"
+                  v-model="keyword"
+                  @input="search"
+                />
                 <div class="input-group-append">
                   <button class="btn btn-primary">
                     <i class="fas fa-search"></i>
@@ -44,7 +50,7 @@
                         href="#"
                         class="btn btn-primary btn-circle"
                         title="Edit"
-                        @click.prevent="showDeleteConfirmation(category.id)"
+                        @click.prevent="showEditForm(category.id)"
                       >
                         <i class="fas fa-edit"></i>
                       </a>
@@ -52,7 +58,7 @@
                         href="#"
                         class="btn btn-danger btn-circle"
                         title="Delete"
-                        @click.prevent="showEditForm(category.id)"
+                        @click.prevent="showDeleteConfirmation(category.id)"
                       >
                         <i class="fas fa-trash"></i>
                       </a>
@@ -79,15 +85,19 @@
         </div>
       </div>
     </div>
-    <b-modal id="modal-1" title="BootstrapVue">
-    <p class="my-4">Hello from modal!</p>
-  </b-modal>
+    <b-modal ref="modal" title="BootstrapVue" hide-footer>
+      <CategoryAddOrEdit :csrf="this.csrf" :mode="formMode" :parent="$refs.modal" :itemId="itemId"></CategoryAddOrEdit>
+    </b-modal>
   </div>
   <!-- /.container-fluid -->
 </template>
 <script>
+import CategoryAddOrEdit from "./CategoryAddOrEdit";
 import queryString from "query-string";
 export default {
+  components: {
+    CategoryAddOrEdit
+  },
   data() {
     return {
       categories: {
@@ -96,14 +106,15 @@ export default {
         per_page: 25
       },
       keyword: null,
-      page: 1
+      page: 1,
+      formMode: null,
+      itemId: null
     };
   },
-  computed:{
-      count()
-      {
-          return Math.ceil(this.categories.total / this.categories.per_page);
-      } 
+  computed: {
+    count() {
+      return Math.ceil(this.categories.total / this.categories.per_page);
+    }
   },
   props: {
     csrf: {
@@ -115,8 +126,15 @@ export default {
     this.search();
   },
   methods: {
-    showAddForm() {},
-    showEditForm() {},
+    showAddForm() {
+      this.formMode = "add";
+      this.$refs.modal.show();
+    },
+    showEditForm(id) {
+      this.itemId = id;
+      this.formMode = "edit";
+      this.$refs.modal.show();
+    },
     showDeleteConfirmation() {},
     async search() {
       let { keyword, page } = this;
