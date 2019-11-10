@@ -18,12 +18,7 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-import {ServerTable, ClientTable, Event} from 'vue-tables-2';
-Vue.use(ClientTable, {}, false, 'bootstrap4', 'default');
-Vue.component('chart-area-demo', require('./components/ChartAreaDemo.vue').default);
-Vue.component('chart-pie-demo', require('./components/ChartPieDemo.vue').default);
-Vue.component('chart-bar-demo', require('./components/ChartBarDemo.vue').default);
-Vue.component('tables-demo', require('./components/TablesDemo.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
