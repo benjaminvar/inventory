@@ -30,6 +30,7 @@
         "jquery.easing": "^1.4.1",
         "noty": "^3.2.0-beta",
         "query-string": "^6.8.3",
+        "vee-validate": "^3.0.11",
         "vue-axios": "^2.1.5",
         "vue-notifications": "^1.0.2",
         "vuejs-paginate": "^2.1.0"
