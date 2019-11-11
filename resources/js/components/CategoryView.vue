@@ -69,6 +69,8 @@
             </div>
             <nav aria-label="Page navigation">
               <paginate
+                v-model="page"
+                :click-handler="loadData"
                 :page-count="count"
                 :prev-text="'Previous'"
                 :next-text="'Next'"
@@ -94,6 +96,7 @@
 <script>
 import CategoryAddOrEdit from "./CategoryAddOrEdit";
 import queryString from "query-string";
+import Swal from "sweetalert2";
 export default {
   components: {
     CategoryAddOrEdit
@@ -135,8 +138,38 @@ export default {
       this.formMode = "edit";
       this.$refs.modal.show();
     },
-    showDeleteConfirmation() {},
+    async showDeleteConfirmation(id) {
+      
+      let response = await Swal.fire({
+        text: 'Are you sure?',
+        showCancelButton: true,
+      });
+      if(response.value)
+      {
+        this.delete(id);
+      }
+    },
+    async delete(id)
+    {
+        await this.$http({
+          method: 'delete',
+          url: `ajax/categories/${id}/delete`,
+          headers:{
+            'X-CSRF-Token': this.csrf
+          }
+        });
+        Swal.fire({
+          position: 'top-end',
+          text: 'Deleted sucessfully',
+          icon: 'success',
+          showConfirmButton: false
+        })
+    },
     async search() {
+      this.pàge = 1;
+      this.loadData();
+    },
+    async loadData() {
       let { keyword, page } = this;
       let response = await this.$http.get(
         "ajax/categories?" + queryString.stringify({ keyword, page })
