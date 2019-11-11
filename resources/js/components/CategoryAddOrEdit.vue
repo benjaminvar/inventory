@@ -1,16 +1,24 @@
 <template>
-  <form action @submit.prevent>
+<ValidationObserver tag="form" @submit.prevent v-slot="{ invalid }">
     <div class="form-group">
-      <label for>Name</label>
-      <input type="text" class="form-control" v-model="category.name" />
+      <ValidationProvider rules="required" name="Name" v-slot="{ errors }">
+        <label for>Name</label>
+        <input type="text" class="form-control" v-model="category.name" />
+        <div class="text-danger mt-2"><span>{{ errors[0] }}</span></div>
+      </ValidationProvider>
     </div>
     <div class="form-group">
-      <button class="btn btn-success" @click="add" v-if="mode === 'add'">Add New Category</button>
-      <button class="btn btn-success" @click="update" v-else>Update category</button>
+      <button class="btn btn-success" @click="add" v-if="mode === 'add'" :disabled="invalid">Add New Category</button>
+      <button class="btn btn-success" @click="update" v-else :disabled="invalid">Update category</button>
     </div>
-  </form>
+  </ValidationObserver>
 </template>
 <script>
+import { extend } from "vee-validate";
+import { required } from "vee-validate/dist/rules";
+extend("required", {
+  ...required
+});
 export default {
   data() {
     return {

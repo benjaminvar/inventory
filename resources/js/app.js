@@ -16,6 +16,7 @@ Vue.use(VueAxios, axios)
 Vue.use(BootstrapVue);
 Vue.use(ValidationProvider);
 Vue.component('ValidationProvider',ValidationProvider.ValidationProvider);
+Vue.component('ValidationObserver',ValidationProvider.ValidationObserver);
 Vue.component('paginate', Paginate)
 /**
  * The following block of code may be used to automatically register your
