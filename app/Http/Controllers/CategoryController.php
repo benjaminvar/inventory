@@ -12,9 +12,12 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Category::paginate(25));
+        $result = Category::where('name','like',"%$request->keyword%")
+        ->OrWhere('id','=',"$request->keyword")
+        ->paginate(25);
+        return response()->json($result);
     }
     /**
      * Show the form for editing the specified resource.
