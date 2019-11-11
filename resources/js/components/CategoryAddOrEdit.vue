@@ -16,6 +16,7 @@
 <script>
 import { extend } from "vee-validate";
 import { required } from "vee-validate/dist/rules";
+import Swal from 'sweetalert2'
 extend("required", {
   ...required
 });
@@ -66,6 +67,7 @@ export default {
       });
       this.$root.$emit("update-data");
       this.parent.hide();
+      this.showNotification('Added Successfully.');
     },
     async update() {
       await this.$http({
@@ -78,6 +80,16 @@ export default {
       });
       this.$root.$emit("update-data");
       this.parent.hide();
+      this.showNotification('Updated Successfully.');
+    },
+    showNotification(text='',icon = 'success')
+    {
+      Swal.fire({
+          position: 'top-end',
+          text: text,
+          icon: icon,
+          showConfirmButton: false
+        });
     }
   }
 };
