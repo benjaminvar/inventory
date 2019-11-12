@@ -43,10 +43,11 @@ const rules = {
   email,
   regex
 }
-const rulesKeys = Object.keys(rules);
-for(let key of rulesKeys)
+//registering all rules
+const rulesNames = Object.keys(rules);
+for(let ruleName of rulesNames)
 {
-extend(key, {
+extend(ruleName, {
   ...rules[key]
 });
 }
