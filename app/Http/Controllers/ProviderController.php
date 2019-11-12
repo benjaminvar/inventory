@@ -12,11 +12,19 @@ class ProviderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $result = Provider::where('id','=',"$request->keyword")
+                           ->OrWhere('name','like',"%$request->keyword%")
+                           ->OrWhere('email','like',"%$request->keyword%")
+                           ->OrWhere('phone_number','like',"%$request->keyword%")
+                           ->paginate(25);
+        return response()->json($result);
     }
-
+    public function get(Provider $provider)
+    {
+        return response()->json($provider);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +43,24 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = \Validator::make($request->input(),
+       [
+           'name' => 'required|string',
+           'email' => 'required|email',
+           'phone_number' => 'required|string',
+           'address' => 'required|string'
+       ]);
+       if(!$validator->fails())
+       {
+           $provider = new Provider();
+           $provider->name = $request->input('name');
+           $provider->email = $request->input('email');
+           $provider->phone_number = $request->input('phone_number');
+           $provider->address = $request->input('address');
+           $provider->save();
+           return response(null,200);
+       }
+       return response()->json($validator->errors());
     }
 
     /**
@@ -69,7 +94,23 @@ class ProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
-        //
+        $validator = \Validator::make($request->input(),
+       [
+           'name' => 'required|string',
+           'email' => 'required|email',
+           'phone_number' => 'required|string',
+           'address' => 'required|string'
+       ]);
+       if(!$validator->fails())
+       {
+           $provider->name = $request->input('name');
+           $provider->email = $request->input('email');
+           $provider->phone_number = $request->input('phone_number');
+           $provider->address = $request->input('address');
+           $provider->save();
+           return response(null,200);
+       }
+       return response()->json($validator->errors());
     }
 
     /**
@@ -80,6 +121,6 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
-        //
+        $provider->delete();
     }
 }
