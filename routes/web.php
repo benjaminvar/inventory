@@ -27,3 +27,11 @@ Route::get('/ajax/providers/{provider}', 'ProviderController@get');
 Route::post('/ajax/providers/add', 'ProviderController@store');
 Route::put('/ajax/providers/{provider}/update', 'ProviderController@update');
 Route::delete('/ajax/providers/{provider}/delete', 'ProviderController@destroy');
+
+Route::get('/products', 'ProductController@show');
+Route::get('/ajax/products', 'ProductController@index');
+Route::get('/ajax/products/{product}', 'ProductController@get');
+Route::post('/ajax/products/add', 'ProductController@store');
+Route::post('/ajax/products/image/add', 'ProductController@storeImage');
+Route::put('/ajax/products/{product}/update', 'ProductController@update');
+Route::delete('/ajax/products/{product}/delete', 'ProductController@destroy');
