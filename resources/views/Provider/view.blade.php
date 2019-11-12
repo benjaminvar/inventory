@@ -23,7 +23,7 @@ Providers
 
         @include('includes.topbar')
         
-      {{csrf_token()}}
+       <provider-view csrf="{{csrf_token()}}"></provider-view>
 
       </div>
       <!-- End of Main Content -->
