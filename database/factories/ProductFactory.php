@@ -13,7 +13,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'stock' => $faker->numberBetween(100,500),
         'min_stock' => 20,
         'provider_id' => 1,
-        'image' => $faker->image(public_path('/img/products'), 800, 800, 'cats')
+        'image' => $faker->image(storage_path('/app/public/img/products'), 800, 800, 'cats')
 
     ];
 });
