@@ -20,3 +20,10 @@ Route::get('/ajax/categories/{category}', 'CategoryController@get');
 Route::post('/ajax/categories/add', 'CategoryController@store');
 Route::put('/ajax/categories/{category}/update', 'CategoryController@update');
 Route::delete('/ajax/categories/{category}/delete', 'CategoryController@destroy');
+
+Route::get('/providers', 'ProviderController@show');
+Route::get('/ajax/providers', 'ProviderController@index');
+Route::get('/ajax/providers/{provider}', 'ProviderController@get');
+Route::post('/ajax/providers/add', 'ProviderController@store');
+Route::put('/ajax/providers/{provider}/update', 'ProviderController@update');
+Route::delete('/ajax/providers/{provider}/delete', 'ProviderController@destroy');
