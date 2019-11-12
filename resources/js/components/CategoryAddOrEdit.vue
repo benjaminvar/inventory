@@ -65,7 +65,7 @@ export default {
           "X-CSRF-TOKEN": this.csrf
         }
       });
-      this.$root.$emit("update-data");
+      this.$emit("updatedata");
       this.parent.hide();
       this.showNotification('Added Successfully.');
     },
@@ -78,7 +78,7 @@ export default {
           "X-CSRF-TOKEN": this.csrf
         }
       });
-      this.$root.$emit("update-data");
+      this.$emit("updatedata");
       this.parent.hide();
       this.showNotification('Updated Successfully.');
     },

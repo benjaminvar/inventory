@@ -1,6 +1,6 @@
 <template>
   <!-- Begin Page Content -->
-  <div class="container-fluid" @update-data="search">
+  <div class="container-fluid">
     <div class="row">
       <div class="col">
         <h1 class="h3 mb-4 text-gray-800">Categories</h1>
@@ -88,7 +88,7 @@
       </div>
     </div>
     <b-modal ref="modal" title="BootstrapVue" hide-footer>
-      <CategoryAddOrEdit :csrf="this.csrf" :mode="formMode" :parent="$refs.modal" :itemId="itemId"></CategoryAddOrEdit>
+      <CategoryAddOrEdit :csrf="this.csrf" :mode="formMode" :parent="$refs.modal" :itemId="itemId"  @updatedata="search"></CategoryAddOrEdit>
     </b-modal>
   </div>
   <!-- /.container-fluid -->
@@ -143,6 +143,7 @@ export default {
             'X-CSRF-Token': this.csrf
           }
         });
+        this.search();
         Swal.fire({
           position: 'top-end',
           text: 'Deleted sucessfully',
