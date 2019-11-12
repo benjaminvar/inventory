@@ -12,6 +12,6 @@ class Product extends Model
 
     public function provider()
     {
-        return $this->belongsToMany(Provider::class);
+        return $this->belongsTo(Provider::class);
     }
 }
