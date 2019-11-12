@@ -23,7 +23,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  placeholder="Staer typing to searhc"
+                  placeholder="Start typing to search..."
                   v-model="keyword"
                   @input="search"
                 />
