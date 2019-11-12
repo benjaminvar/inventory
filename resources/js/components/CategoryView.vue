@@ -166,7 +166,7 @@ export default {
         })
     },
     async search() {
-      this.pàge = 1;
+      this.page = 1;
       this.loadData();
     },
     async loadData() {
