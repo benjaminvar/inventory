@@ -97,7 +97,10 @@
 import CategoryAddOrEdit from "./CategoryAddOrEdit";
 import queryString from "query-string";
 import Swal from "sweetalert2";
+import SearchableMixin from '../Mixins/SearchableMixin';
+import CrudMixin from '../Mixins/CrudMixin';
 export default {
+  mixins: [SearchableMixin,CrudMixin],
   components: {
     CategoryAddOrEdit
   },
@@ -108,10 +111,6 @@ export default {
         total: 0,
         per_page: 25
       },
-      keyword: null,
-      page: 1,
-      formMode: null,
-      itemId: null
     };
   },
   computed: {
@@ -125,29 +124,15 @@ export default {
       default: null
     }
   },
-  mounted() {
-    this.search();
-  },
   methods: {
-    showAddForm() {
-      this.formMode = "add";
-      this.$refs.modal.show();
-    },
-    showEditForm(id) {
-      this.itemId = id;
-      this.formMode = "edit";
-      this.$refs.modal.show();
-    },
-    async showDeleteConfirmation(id) {
-      
+   
+    async showDeleteConfirmationNotification(id)
+    {
       let response = await Swal.fire({
         text: 'Are you sure?',
         showCancelButton: true,
       });
-      if(response.value)
-      {
-        this.delete(id);
-      }
+      return response.value;
     },
     async delete(id)
     {
@@ -165,10 +150,7 @@ export default {
           showConfirmButton: false
         })
     },
-    async search() {
-      this.page = 1;
-      this.loadData();
-    },
+    
     async loadData() {
       let { keyword, page } = this;
       let response = await this.$http.get(
