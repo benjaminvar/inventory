@@ -71,7 +71,7 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
-        //
+        return view('Provider.view');
     }
 
     /**
