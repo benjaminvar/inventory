@@ -12,7 +12,7 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $result = Customer::where('name','like',"%$request->keyword%")
         ->OrWhere('last_name','like',"%$request->keyword%")
@@ -89,7 +89,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('Customer.view');
     }
 
     /**
