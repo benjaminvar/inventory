@@ -30,6 +30,7 @@ Vue.component('paginate', Paginate)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 Vue.component('category-view', require('./components/CategoryView.vue').default);
 Vue.component('provider-view', require('./components/ProviderView.vue').default);
+Vue.component('product-view', require('./components/ProductView.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
