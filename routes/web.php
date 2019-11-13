@@ -39,3 +39,11 @@ Route::post('/ajax/products/add', 'ProductController@store');
 Route::post('/ajax/products/image/add', 'ProductController@storeImage');
 Route::put('/ajax/products/{product}/update', 'ProductController@update');
 Route::delete('/ajax/products/{product}/delete', 'ProductController@destroy');
+
+Route::get('/customers', 'CustomerController@show');
+Route::get('/ajax/customers', 'CustomerController@index');
+Route::get('/ajax/customers/raw', 'CustomerController@getAll');
+Route::get('/ajax/customers/{product}', 'CustomerController@get');
+Route::post('/ajax/customers/add', 'CustomerController@store');
+Route::put('/ajax/customers/{product}/update', 'CustomerController@update');
+Route::delete('/ajax/customers/{product}/delete', 'CustomerController@destroy');
