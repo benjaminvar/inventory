@@ -19,6 +19,16 @@ class CategoryController extends Controller
         ->paginate(25);
         return response()->json($result);
     }
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll(Category $category)
+    {
+        return response()->json(Category::all());
+    }
     /**
      * Show the form for editing the specified resource.
      *

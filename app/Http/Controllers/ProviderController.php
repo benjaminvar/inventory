@@ -21,6 +21,17 @@ class ProviderController extends Controller
                            ->paginate(25);
         return response()->json($result);
     }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Provider  $provider
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll(Provider $product)
+    {
+        return response()->json(Provider::all());
+    }
+
     public function get(Provider $provider)
     {
         return response()->json($provider);

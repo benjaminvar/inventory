@@ -31,7 +31,16 @@ class ProductController extends Controller
     {
         return response()->json($product);
     }
-
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll(Product $product)
+    {
+        return response()->json(Product::all());
+    }
     /**
      * Show the form for creating a new resource.
      *
