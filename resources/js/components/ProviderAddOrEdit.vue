@@ -48,7 +48,7 @@ const rulesNames = Object.keys(rules);
 for(let ruleName of rulesNames)
 {
 extend(ruleName, {
-  ...rules[key]
+  ...rules[ruleName]
 });
 }
 
