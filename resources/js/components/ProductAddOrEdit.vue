@@ -57,8 +57,8 @@
       <img :src="imagePreview" alt="" width="100%">
     </div>
     <div class="form-group">
-      <button class="btn btn-success" @click="add" v-if="mode === 'add'" :disabled="invalid">Add New Provider</button>
-      <button class="btn btn-success" @click="update" v-else :disabled="invalid">Update product</button>
+      <button class="btn btn-success" @click="add" v-if="mode === 'add'" :disabled="invalid">Add New Product</button>
+      <button class="btn btn-success" @click="update" v-else :disabled="invalid">Update Product</button>
     </div>
   </ValidationObserver>
 </template>
