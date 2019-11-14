@@ -142,7 +142,9 @@
                         <input
                             type="file"
                             class="form-control"
-                            @change="[assignFile($event),generatePreview($event)]"
+                            @change="
+                                [assignFile($event), generatePreview($event)]
+                            "
                         />
                         <div class="text-danger mt-2">
                             <span>{{ errors[0] }}</span>
@@ -187,7 +189,7 @@ export default {
             },
             providers: [],
             imagePreview: null,
-            imageFile: null,
+            imageFile: null
         };
     },
     props: {
@@ -248,6 +250,8 @@ export default {
             }
         },
         async add() {
+            let image = await this.UploadImage();
+            this.product.image = image;
             await this.$http({
                 method: "post",
                 data: this.product,
@@ -261,6 +265,10 @@ export default {
             this.showNotification("Added Successfully.");
         },
         async update() {
+            if (this.imageFile !== null) {
+                let image = await this.UploadImage();
+                this.product.image = image;
+            }
             await this.$http({
                 method: "put",
                 data: this.product,
@@ -272,6 +280,19 @@ export default {
             this.$emit("updatedata");
             this.parent.hide();
             this.showNotification("Updated Successfully.");
+        },
+        async UploadImage() {
+            let image = new FormData();
+            image.append("image", this.imageFile);
+            let response = await this.$http({
+                method: "post",
+                data: image,
+                url: "ajax/products/image/add",
+                headers: {
+                    "X-CSRF-TOKEN": this.csrf
+                }
+            });
+            return response.data;
         },
         showNotification(text = "", icon = "success") {
             Swal.fire({
