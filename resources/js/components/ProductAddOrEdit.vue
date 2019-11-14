@@ -207,10 +207,16 @@ export default {
             default: null
         }
     },
+    computed:{
+      imagePath()
+      {
+         return `storage/${this.product.image}`;
+      }
+    },
     async mounted() {
         if (this.mode == "edit") {
             await this.loadData();
-            this.imagePreview = `storage/${this.product.image}`;
+            this.imagePreview = this.imagePath;
         }
         await this.loadProviders();
     },
