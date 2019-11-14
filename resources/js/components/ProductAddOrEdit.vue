@@ -142,7 +142,7 @@
                         <input
                             type="file"
                             class="form-control"
-                            @change="handleFile($event)"
+                            @change="[assignFile($event),generatePreview($event)]"
                         />
                         <div class="text-danger mt-2">
                             <span>{{ errors[0] }}</span>
@@ -207,11 +207,10 @@ export default {
             default: null
         }
     },
-    computed:{
-      imagePath()
-      {
-         return `storage/${this.product.image}`;
-      }
+    computed: {
+        imagePath() {
+            return `storage/${this.product.image}`;
+        }
     },
     async mounted() {
         if (this.mode == "edit") {
@@ -231,13 +230,20 @@ export default {
             let responseProviders = await this.$http.get(`ajax/providers/raw`);
             this.providers = responseProviders.data;
         },
-        handleFile($event) {
+        generatePreview($event) {
             if ($event.target.files[0]) {
                 this.imagePreview = window.URL.createObjectURL(
                     $event.target.files[0]
                 );
             } else {
                 this.imagePreview = this.product.image;
+            }
+        },
+        assignFile($event) {
+            if ($event.target.files[0]) {
+                this.imageFile = $event.target.files[0];
+            } else {
+                this.imageFile = null;
             }
         },
         async add() {
