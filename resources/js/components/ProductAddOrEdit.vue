@@ -212,14 +212,17 @@ export default {
             await this.loadData();
             this.imagePreview = `storage/${this.product.image}`;
         }
+        await this.loadProviders();
     },
     methods: {
         async loadData() {
             let responseProduct = await this.$http.get(
                 `ajax/products/${this.itemId}`
             );
-            let responseProviders = await this.$http.get(`ajax/providers/raw`);
             this.product = responseProduct.data;
+        },
+        async loadProviders() {
+            let responseProviders = await this.$http.get(`ajax/providers/raw`);
             this.providers = responseProviders.data;
         },
         handleFile($event) {
