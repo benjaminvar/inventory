@@ -239,7 +239,12 @@ export default {
                     $event.target.files[0]
                 );
             } else {
-                this.imagePreview = this.product.image;
+                //Restore original image on no file on edit mode
+                if (this.mode === "edit") {
+                    this.imagePreview = this.imagePath;
+                } else {
+                    this.imagePreview = null;
+                }
             }
         },
         assignFile($event) {
