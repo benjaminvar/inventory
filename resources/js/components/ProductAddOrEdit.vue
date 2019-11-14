@@ -186,7 +186,8 @@ export default {
                 image: null
             },
             providers: [],
-            imagePreview: null
+            imagePreview: null,
+            imageFile: null,
         };
     },
     props: {
