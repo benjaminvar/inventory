@@ -99,7 +99,7 @@
         </div>
       </div>
     </div>
-    <b-modal ref="modal" title="BootstrapVue" hide-footer class="modal-md">
+    <b-modal ref="modal" title="BootstrapVue" size="lg" hide-footer>
       <ProductAddOrEdit :csrf="this.csrf" :mode="formMode" :parent="$refs.modal" :itemId="itemId"  @updatedata="search"></ProductAddOrEdit>
     </b-modal>
   </div>
