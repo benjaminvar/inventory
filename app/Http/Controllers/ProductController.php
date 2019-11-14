@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Provider;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -145,7 +146,10 @@ class ProductController extends Controller
     {
         $validator = \Validator::make($request->input(),
         [
-            'code' => 'required|unique:products,code',
+            'code' => [
+                'required',
+                Rule::unique('products')->ignore($product->id)
+            ],
             'name' => 'required|string',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
