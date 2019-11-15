@@ -50,7 +50,9 @@
                   </tr>
                   <tr v-for="product in products.data" :key="product.id">
                     <td>{{product.id}}</td>
-                    <td>{{product.code}}</td>
+                    <td width="20">
+                      <barcode :value="product.code" :format="'CODE128'" width="1" :height="20"></barcode>
+                    </td>
                     <td><img :src="`storage/${product.image}`" width="80" height="80"/></td>
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>

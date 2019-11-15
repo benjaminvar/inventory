@@ -112,26 +112,14 @@
                         </div>
                     </ValidationProvider>
                 </div>
-                <div class="form-group">
-                    <button
-                        class="btn btn-success"
-                        @click="add"
-                        v-if="mode === 'add'"
-                        :disabled="invalid"
-                    >
-                        Add New Product
-                    </button>
-                    <button
-                        class="btn btn-success"
-                        @click="update"
-                        v-else
-                        :disabled="invalid"
-                    >
-                        Update Product
-                    </button>
-                </div>
+               
             </div>
             <div class="col-md-5">
+                <div class="form-group">
+                    <label >Barcode</label>
+                    <barcode :value="product.code"></barcode>
+                </div>
+                
                 <div class="form-group">
                     <ValidationProvider
                         rules="required"
@@ -153,6 +141,26 @@
                 </div>
                 <div class="form-group" v-if="imagePreview">
                     <img :src="imagePreview" alt="" width="100%" />
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button
+                        class="btn btn-success"
+                        @click="add"
+                        v-if="mode === 'add'"
+                        :disabled="invalid"
+                    >
+                        Add New Product
+                    </button>
+                    <button
+                        class="btn btn-success"
+                        @click="update"
+                        v-else
+                        :disabled="invalid"
+                    >
+                        Update Product
+                    </button>
                 </div>
             </div>
         </div>

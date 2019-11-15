@@ -11,13 +11,14 @@ let BootstrapVue = require('bootstrap-vue');
 let axios = require('axios');
 let VueAxios = require('vue-axios');
 let Paginate = require('vuejs-paginate');
-
+let VueBarcode = require('vue-barcode');
 Vue.use(VueAxios, axios)
 Vue.use(BootstrapVue);
 Vue.use(ValidationProvider);
 Vue.component('ValidationProvider',ValidationProvider.ValidationProvider);
 Vue.component('ValidationObserver',ValidationProvider.ValidationObserver);
-Vue.component('paginate', Paginate)
+Vue.component('paginate', Paginate);
+Vue.component('barcode', VueBarcode);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
