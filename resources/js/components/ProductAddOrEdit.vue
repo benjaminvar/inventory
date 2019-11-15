@@ -117,7 +117,7 @@
             <div class="col-md-5">
                 <div class="form-group">
                     <label >Barcode</label>
-                    <barcode :value="product.code"></barcode>
+                    <barcode :value="product.code"><h6 class="text-center">Here will appear the barcode.</h6></barcode>
                 </div>
                 
                 <div class="form-group">
