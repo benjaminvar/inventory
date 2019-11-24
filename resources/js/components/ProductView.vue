@@ -51,7 +51,7 @@
                   <tr v-for="product in products.data" :key="product.id">
                     <td>{{product.id}}</td>
                     <td width="20">
-                      <barcode :value="product.code" :format="'CODE128'" width="1" :height="20"></barcode>
+                      <barcode :value="product.code" :format="'CODE128'" width="1" :height="20" :fontSize="16"></barcode>
                     </td>
                     <td><img :src="`storage/${product.image}`" width="80" height="80"/></td>
                     <td>{{product.name}}</td>
@@ -102,6 +102,7 @@
       </div>
     </div>
     <b-modal ref="modal" title="BootstrapVue" size="lg" hide-footer>
+      <template v-slot:modal-title><span></span></template>
       <ProductAddOrEdit :csrf="this.csrf" :mode="formMode" :parent="$refs.modal" :itemId="itemId"  @updatedata="search"></ProductAddOrEdit>
     </b-modal>
   </div>

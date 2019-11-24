@@ -94,6 +94,7 @@
       </div>
     </div>
     <b-modal ref="modal" title="BootstrapVue" hide-footer>
+      <template v-slot:modal-title><span></span></template>
       <ProviderAddOrEdit :csrf="this.csrf" :mode="formMode" :parent="$refs.modal" :itemId="itemId"  @updatedata="search"></ProviderAddOrEdit>
     </b-modal>
   </div>

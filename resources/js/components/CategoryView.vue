@@ -88,6 +88,7 @@
       </div>
     </div>
     <b-modal ref="modal" title="BootstrapVue" hide-footer>
+      <template v-slot:modal-title><span></span></template>
       <CategoryAddOrEdit :csrf="this.csrf" :mode="formMode" :parent="$refs.modal" :itemId="itemId"  @updatedata="search"></CategoryAddOrEdit>
     </b-modal>
   </div>
